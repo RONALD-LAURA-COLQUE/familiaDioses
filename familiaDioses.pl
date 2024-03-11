@@ -11,6 +11,18 @@ atena.
 nera.
 hermes.
 
+esPadre(cronos).
+esPadre(ares).
+esPadre(hefesto).
+esPadre(poseidon).
+esPadre(zeus).
+esPadre(baco).
+esPadre(afrodita).
+
+esMadre(hera).
+esMadre(hipolita).
+esMadre(atena).
+
 esHombre(cronos).
 esHombre(ares).
 esHombre(poseidon).
@@ -24,6 +36,32 @@ esMujer(hera).
 esMujer(hipolita).
 esMujer(atena).
 esMujer(nera).
+
+esHijo(hefesto).
+esHijo(afrodita).
+esHijo(zeus).
+esHijo(baco).
+esHijo(hermes).
+
+esHija(nera).
+esHija(atena).
+esHija(hera).
+
+esHermano(afrodita).
+esHermano(hefesto).
+esHermano(zeus).
+esHermano(baco).
+
+esHermana(atena).
+esHermana(nera).
+
+esAbuelo(cronos).
+esAbuelo(ares).
+esAbuelo(afrodita).
+esAbuelo(hefesto).
+esAbuelo(poseidon).
+
+esAbuela(hera).
 
 esDecendienteDirecto(hera, cronos).
 
@@ -47,4 +85,5 @@ esDecendienteDirecto(nera, hipolita).
 
 esDecendienteDirecto(hermes, atena).
 
-esPadreDe(Padre, Hijo):-esDecendienteDirecto(Hijo, Padre) ,esDecendienteDirecto(Hijo, Madre).
+esPadreDe(Padre, Hijo):- esDecendienteDirecto(Hijo, Padre).
+
