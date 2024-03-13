@@ -11,18 +11,6 @@ atena.
 nera.
 hermes.
 
-esPadre(cronos).
-esPadre(ares).
-esPadre(hefesto).
-esPadre(poseidon).
-esPadre(zeus).
-esPadre(baco).
-esPadre(afrodita).
-
-esMadre(hera).
-esMadre(hipolita).
-esMadre(atena).
-
 esHombre(cronos).
 esHombre(ares).
 esHombre(poseidon).
@@ -36,32 +24,6 @@ esMujer(hera).
 esMujer(hipolita).
 esMujer(atena).
 esMujer(nera).
-
-esHijo(hefesto).
-esHijo(afrodita).
-esHijo(zeus).
-esHijo(baco).
-esHijo(hermes).
-
-esHija(nera).
-esHija(atena).
-esHija(hera).
-
-esHermano(afrodita).
-esHermano(hefesto).
-esHermano(zeus).
-esHermano(baco).
-
-esHermana(atena).
-esHermana(nera).
-
-esAbuelo(cronos).
-esAbuelo(ares).
-esAbuelo(afrodita).
-esAbuelo(hefesto).
-esAbuelo(poseidon).
-
-esAbuela(hera).
 
 esDecendienteDirecto(hera, cronos).
 
@@ -85,5 +47,43 @@ esDecendienteDirecto(nera, hipolita).
 
 esDecendienteDirecto(hermes, atena).
 
-esPadreDe(Padre, Hijo):- esDecendienteDirecto(Hijo, Padre).
+
+esHijo(Hijo, Padre):- esHombre(Hijo), esDecendienteDirecto(Hijo, Padre).
+esHija(Hija, Padre):- esMujer(Hija), esDecendienteDirecto(Hija, Padre).
+
+esPadre(Padre, Hijo):- esDecendienteDirecto(Hijo, Padre), esHombre(Padre).
+esMadre(Madre, Hija):- esDecendienteDirecto(Hija, Madre), esMujer(Madre).
+
+esHermano(Hermano, Persona):- esDecendienteDirecto(Hermano, Padre), esHombre(Hermano), esDecendienteDirecto(Persona, Padre).
+esHermana(Hermana, Persona):- esDecendienteDirecto(Hermana, Madre), esMujer(Hermana), esDecendienteDirecto(Persona, Madre).
+
+esAbuelo(Abuelo, Nieto):- esDecendienteDirecto(Nieto, Padre), esDecendienteDirecto(Padre, Abuelo), esHombre(Abuelo).
+esAbuela(Abuela, Nieto):- esDecendienteDirecto(Nieto, Padre), esDecendienteDirecto(Padre, Abuela), esMujer(Abuela).
+
+
+esAncestro(X, Bisabuelo):- esPadre(Ancestro, Bisabuelo); esMadre(Ancestro, Bisabuelo).
+
+esAncestro(Ancestro, Abuelo):- esPadre(Bisabuelo, Abuelo), esAncestro(Ancestro, Bisabuelo); 
+esMadre(Bisabuelo, Abuelo), esAncestro(Ancestro, Bisabuelo).
+
+
+esAncestro(Ancestro, Abuelo):- esPadre(Ancestro, Bisabuelo); esMadre(Ancestro, Bisabuelo).
+
+esAncestro(Ancestro, Abuelo):- esPadre(Bisabuelo, Abuelo), esAncestro(Ancestro, Abuelo); 
+esMadre(Bisabuelo, Abuelo), esAncestro(Ancestro, Abuelo).
+
+
+esAncestro(Ancestro, Padre):- esPadre(Ancestro, Padre); esMadre(Ancestro, Madre).
+
+esAncestro(Ancestro, Padre):- esPadre(Abuelo, Padre), esAncestro(Ancestro, Padre); 
+esMadre(Abuelo, Madre), esAncestro(Ancestro, Padre).
+
+
+esAncestro(Ancestro, Persona):- esPadre(Ancestro, Persona); esMadre(Ancestro, Persona).
+
+esAncestro(Ancestro, Persona):- esPadre(Padre, Persona), esAncestro(Ancestro, Padre); 
+esMadre(Madre, Persona), esAncestro(Ancestro, Madre).
+
+
+
 
