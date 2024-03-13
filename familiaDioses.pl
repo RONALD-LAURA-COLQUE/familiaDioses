@@ -83,7 +83,3 @@ esAncestro(Ancestro, Persona):- esPadre(Ancestro, Persona); esMadre(Ancestro, Pe
 
 esAncestro(Ancestro, Persona):- esPadre(Padre, Persona), esAncestro(Ancestro, Padre); 
 esMadre(Madre, Persona), esAncestro(Ancestro, Madre).
-
-
-
-
