@@ -60,26 +60,5 @@ esHermana(Hermana, Persona):- esDecendienteDirecto(Hermana, Madre), esMujer(Herm
 esAbuelo(Abuelo, Nieto):- esDecendienteDirecto(Nieto, Padre), esDecendienteDirecto(Padre, Abuelo), esHombre(Abuelo).
 esAbuela(Abuela, Nieto):- esDecendienteDirecto(Nieto, Padre), esDecendienteDirecto(Padre, Abuela), esMujer(Abuela).
 
-
-esAncestro(X, Bisabuelo):- esPadre(Ancestro, Bisabuelo); esMadre(Ancestro, Bisabuelo).
-
-esAncestro(Ancestro, Abuelo):- esPadre(Bisabuelo, Abuelo), esAncestro(Ancestro, Bisabuelo); 
-esMadre(Bisabuelo, Abuelo), esAncestro(Ancestro, Bisabuelo).
-
-
-esAncestro(Ancestro, Abuelo):- esPadre(Ancestro, Bisabuelo); esMadre(Ancestro, Bisabuelo).
-
-esAncestro(Ancestro, Abuelo):- esPadre(Bisabuelo, Abuelo), esAncestro(Ancestro, Abuelo); 
-esMadre(Bisabuelo, Abuelo), esAncestro(Ancestro, Abuelo).
-
-
-esAncestro(Ancestro, Padre):- esPadre(Ancestro, Padre); esMadre(Ancestro, Madre).
-
-esAncestro(Ancestro, Padre):- esPadre(Abuelo, Padre), esAncestro(Ancestro, Padre); 
-esMadre(Abuelo, Madre), esAncestro(Ancestro, Padre).
-
-
-esAncestro(Ancestro, Persona):- esPadre(Ancestro, Persona); esMadre(Ancestro, Persona).
-
-esAncestro(Ancestro, Persona):- esPadre(Padre, Persona), esAncestro(Ancestro, Padre); 
-esMadre(Madre, Persona), esAncestro(Ancestro, Madre).
+esAncestro(Ancestro, Persona):- esDecendienteDirecto(Persona, Ancestro), esHombre(Ancestro).
+esAncestro(Ancestro, Persona):-esDecendienteDirecto(Persona, Padre), esAncestro(Ancestro, Padre).
