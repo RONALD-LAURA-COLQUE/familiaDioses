@@ -62,3 +62,9 @@ esAbuela(Abuela, Nieto):- esDecendienteDirecto(Nieto, Padre), esDecendienteDirec
 
 esAncestro(Ancestro, Persona):- esDecendienteDirecto(Persona, Ancestro), esHombre(Ancestro).
 esAncestro(Ancestro, Persona):-esDecendienteDirecto(Persona, Padre), esAncestro(Ancestro, Padre).
+
+
+enLista(juan, [juan, maria, pedro]).
+
+enLista(Valor, [Cabeza | Cola]):-Valor==Cabeza.
+enLista(Valor, [_ | Cola]):-enLista(Valor, Cola).
